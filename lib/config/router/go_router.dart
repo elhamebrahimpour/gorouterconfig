@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:gorouterconfig/shell_souting/bottom_navigation_shell.dart';
 import 'package:gorouterconfig/shell_souting/screens/favorites_screen.dart';
@@ -13,6 +14,19 @@ import 'package:gorouterconfig/simple_routing/screens/product_screen.dart';
 final shellGoRouter = GoRouter(
   initialLocation: '/musics',
   debugLogDiagnostics: true,
+  errorBuilder: (context, state) => Scaffold(
+    backgroundColor: Colors.grey[100],
+    appBar: AppBar(title: Text('Routing Error'), centerTitle: true),
+    body: Center(
+      child: ElevatedButton.icon(
+        onPressed: () {
+          context.go('/musics');
+        },
+        label: Text('Back To Musics'),
+        icon: Icon(Icons.arrow_back),
+      ),
+    ),
+  ),
   routes: [
     ShellRoute(
       builder: (context, state, child) {
